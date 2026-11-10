@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#minecraft:is_jungle",
+  "spawners": {
+    "type": "yabanhayati:gorilla",
+    "weight": 3,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

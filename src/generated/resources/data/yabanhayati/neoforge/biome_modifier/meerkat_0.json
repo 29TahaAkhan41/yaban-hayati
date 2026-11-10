@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:desert",
+  "spawners": {
+    "type": "yabanhayati:meerkat",
+    "weight": 6,
+    "minCount": 2,
+    "maxCount": 5
+  }
+}

@@ -1,0 +1,52 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+version = project.mod_version
+group = 'com.yabanhayati'
+base { archivesName = project.mod_id }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+sourceSets {
+    // Hayvan tablosu: hem mod hem de doku ureticisi tarafindan kullanilir (Minecraft'a bagimli degil)
+    main {
+        java { srcDir 'src/defs/java' }
+        resources { srcDir 'src/generated/resources' }
+    }
+    gen {
+        java { srcDirs = ['src/gen/java', 'src/defs/java'] }
+    }
+}
+
+neoForge {
+    version = project.neo_version
+    runs {
+        client {
+            client()
+            // ornek: ./gradlew runClient -PquickWorld=DunyaAdi  (dogrudan o dunyayi acar)
+            if (project.hasProperty('quickWorld')) programArguments.addAll('--quickPlaySingleplayer', project.property('quickWorld').toString())
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+    }
+    mods {
+        "${mod_id}" { sourceSet(sourceSets.main) }
+    }
+}
+
+// Dokulari, dil dosyalarini, ganimet tablolarini ve dogma kurallarini yeniden uretir
+tasks.register('genAssets', JavaExec) {
+    group = 'yabanhayati'
+    classpath = sourceSets.gen.runtimeClasspath
+    mainClass = 'com.yabanhayati.gen.AssetGen'
+    args = [file('src/generated/resources').absolutePath, file('build/onizleme').absolutePath]
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+
+// Sunucu konsoluna komut yazabilmek icin
+tasks.matching { it.name == 'runServer' }.configureEach { standardInput = System.in }

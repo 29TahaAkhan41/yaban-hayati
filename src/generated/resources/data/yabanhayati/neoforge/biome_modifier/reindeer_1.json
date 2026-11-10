@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:ice_spikes",
+  "spawners": {
+    "type": "yabanhayati:reindeer",
+    "weight": 7,
+    "minCount": 2,
+    "maxCount": 5
+  }
+}

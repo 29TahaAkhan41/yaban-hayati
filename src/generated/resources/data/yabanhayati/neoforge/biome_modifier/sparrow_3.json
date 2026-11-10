@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#minecraft:is_forest",
+  "spawners": {
+    "type": "yabanhayati:sparrow",
+    "weight": 9,
+    "minCount": 2,
+    "maxCount": 5
+  }
+}

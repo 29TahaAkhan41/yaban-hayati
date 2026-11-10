@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:deep_frozen_ocean",
+  "spawners": {
+    "type": "yabanhayati:seal",
+    "weight": 6,
+    "minCount": 2,
+    "maxCount": 4
+  }
+}

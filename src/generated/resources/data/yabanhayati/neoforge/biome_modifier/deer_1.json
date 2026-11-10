@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:plains",
+  "spawners": {
+    "type": "yabanhayati:deer",
+    "weight": 9,
+    "minCount": 2,
+    "maxCount": 4
+  }
+}

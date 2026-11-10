@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:beach",
+  "spawners": {
+    "type": "yabanhayati:flamingo",
+    "weight": 5,
+    "minCount": 3,
+    "maxCount": 6
+  }
+}

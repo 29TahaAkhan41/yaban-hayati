@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:mangrove_swamp",
+  "spawners": {
+    "type": "yabanhayati:hippo",
+    "weight": 2,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

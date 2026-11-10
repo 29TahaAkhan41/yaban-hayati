@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:desert",
+  "spawners": {
+    "type": "yabanhayati:antelope",
+    "weight": 8,
+    "minCount": 3,
+    "maxCount": 5
+  }
+}

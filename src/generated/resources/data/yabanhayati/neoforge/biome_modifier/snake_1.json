@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:swamp",
+  "spawners": {
+    "type": "yabanhayati:snake",
+    "weight": 4,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

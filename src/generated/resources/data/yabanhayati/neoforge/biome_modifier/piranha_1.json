@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:mangrove_swamp",
+  "spawners": {
+    "type": "yabanhayati:piranha",
+    "weight": 6,
+    "minCount": 3,
+    "maxCount": 6
+  }
+}

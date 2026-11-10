@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:beach",
+  "spawners": {
+    "type": "yabanhayati:seagull",
+    "weight": 10,
+    "minCount": 2,
+    "maxCount": 4
+  }
+}

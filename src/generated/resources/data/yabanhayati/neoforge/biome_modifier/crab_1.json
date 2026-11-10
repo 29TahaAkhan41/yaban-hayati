@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "minecraft:stony_shore",
+  "spawners": {
+    "type": "yabanhayati:crab",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}
