@@ -38,6 +38,7 @@ public final class AssetGen {
         en.add("  \"itemGroup." + MOD + "\": \"Wildlife\"");
         tr.add("  \"itemGroup." + MOD + "\": \"Yaban Hayatı\"");
         List<BufferedImage> thumbs = new ArrayList<>();
+        StringJoiner meatTag = new StringJoiner(",\n", "{\n  \"replace\": false,\n  \"values\": [\n", "\n  ]\n}\n");
         for (AnimalDef d : Animals.ALL) {
             ModelShape s = ModelShape.of(d);
             BufferedImage tex = paint(s);
@@ -49,10 +50,31 @@ public final class AssetGen {
             en.add("  \"item." + MOD + "." + d.id + "_spawn_egg\": \"" + d.en + " Spawn Egg\"");
             tr.add("  \"item." + MOD + "." + d.id + "_spawn_egg\": \"" + d.tr + " Çağırma Yumurtası\"");
             text(assets.resolve("models/item/" + d.id + "_spawn_egg.json"), "{\n  \"parent\": \"minecraft:item/template_spawn_egg\"\n}\n");
+
+            // --- et: cig + pismis
+            String raw = d.rawMeatId(), cooked = d.cookedMeatId();
+            en.add("  \"item." + MOD + "." + raw + "\": \"Raw " + d.en + " Meat\"");
+            tr.add("  \"item." + MOD + "." + raw + "\": \"Çiğ " + d.tr + " Eti\"");
+            en.add("  \"item." + MOD + "." + cooked + "\": \"Cooked " + d.en + " Meat\"");
+            tr.add("  \"item." + MOD + "." + cooked + "\": \"Pişmiş " + d.tr + " Eti\"");
+            for (String item : new String[]{raw, cooked}) {
+                write(assets.resolve("textures/item/" + item + ".png"), meatIcon(d, item.equals(cooked)));
+                text(assets.resolve("models/item/" + item + ".json"),
+                        "{\n  \"parent\": \"minecraft:item/generated\",\n  \"textures\": {\n    \"layer0\": \"" + MOD + ":item/" + item + "\"\n  }\n}\n");
+            }
+            text(data.resolve("recipe/" + cooked + ".json"), cooking("smelting", raw, cooked, 200));
+            text(data.resolve("recipe/" + cooked + "_from_smoking.json"), cooking("smoking", raw, cooked, 100));
+            text(data.resolve("recipe/" + cooked + "_from_campfire_cooking.json"), cooking("campfire_cooking", raw, cooked, 600));
+            if (d.shape != AnimalDef.Shape.FISH) {
+                meatTag.add("    \"" + MOD + ":" + raw + "\"");
+                meatTag.add("    \"" + MOD + ":" + cooked + "\"");
+            }
             text(data.resolve("loot_table/entities/" + d.id + ".json"), loot(d));
             for (int i = 0; i < d.biomes.length; i++)
                 text(data.resolve("neoforge/biome_modifier/" + d.id + "_" + i + ".json"), biomeModifier(d, d.biomes[i]));
         }
+        // kurtlar da bu etleri yiyebilsin
+        text(out.resolve("data/minecraft/tags/item/meat.json"), meatTag.toString());
         text(assets.resolve("lang/en_us.json"), en.toString());
         text(assets.resolve("lang/tr_tr.json"), tr.toString());
         writeSheet(preview.resolve("hayvanlar.png"), thumbs);
@@ -62,12 +84,67 @@ public final class AssetGen {
     // ------------------------------------------------------------------ JSON
     static String loot(AnimalDef d) {
         StringJoiner pools = new StringJoiner(",\n");
-        for (AnimalDef.Drop dr : d.drops) {
-            pools.add("    {\n      \"rolls\": 1,\n      \"entries\": [\n        {\n          \"type\": \"minecraft:item\",\n          \"name\": \"" + dr.item() + "\",\n"
-                    + "          \"functions\": [\n            {\n              \"function\": \"minecraft:set_count\",\n              \"count\": { \"type\": \"minecraft:uniform\", \"min\": " + dr.min() + ", \"max\": " + dr.max() + " }\n            },\n"
-                    + "            {\n              \"function\": \"minecraft:enchanted_count_increase\",\n              \"enchantment\": \"minecraft:looting\",\n              \"count\": { \"type\": \"minecraft:uniform\", \"min\": 0, \"max\": 1 }\n            }\n          ]\n        }\n      ]\n    }");
-        }
+        int[] mc = d.meatCount();
+        pools.add(pool(MOD + ":" + d.rawMeatId(), mc[0], mc[1], true));
+        for (AnimalDef.Drop dr : d.drops) pools.add(pool(dr.item(), dr.min(), dr.max(), false));
         return "{\n  \"type\": \"minecraft:entity\",\n  \"pools\": [\n" + pools + "\n  ]\n}\n";
+    }
+
+    static String pool(String item, int min, int max, boolean smelt) {
+        String fn = "            {\n              \"function\": \"minecraft:set_count\",\n              \"count\": { \"type\": \"minecraft:uniform\", \"min\": " + min + ", \"max\": " + max + " }\n            },\n";
+        if (smelt) fn += "            {\n              \"function\": \"minecraft:furnace_smelt\",\n              \"conditions\": [\n                {\n                  \"condition\": \"minecraft:entity_properties\",\n"
+                + "                  \"entity\": \"this\",\n                  \"predicate\": { \"flags\": { \"is_on_fire\": true } }\n                }\n              ]\n            },\n";
+        fn += "            {\n              \"function\": \"minecraft:enchanted_count_increase\",\n              \"enchantment\": \"minecraft:looting\",\n              \"count\": { \"type\": \"minecraft:uniform\", \"min\": 0, \"max\": 1 }\n            }\n";
+        return "    {\n      \"rolls\": 1,\n      \"entries\": [\n        {\n          \"type\": \"minecraft:item\",\n          \"name\": \"" + item + "\",\n          \"functions\": [\n" + fn + "          ]\n        }\n      ]\n    }";
+    }
+
+    static String cooking(String type, String raw, String cooked, int time) {
+        return "{\n  \"type\": \"minecraft:" + type + "\",\n  \"category\": \"food\",\n  \"cookingtime\": " + time + ",\n  \"experience\": 0.35,\n"
+                + "  \"ingredient\": { \"item\": \"" + MOD + ":" + raw + "\" },\n  \"result\": { \"id\": \"" + MOD + ":" + cooked + "\" }\n}\n";
+    }
+
+    // ------------------------------------------------------------------ et ikonlari (16x16)
+    static final String[] STEAK = {
+            "................", "................", ".....oooooo.....", "...ooffffffoo...", "..offmmmmmmffo..", ".ofmmmhhmmmmmfo.",
+            ".ofmmhmmmmmmmfo.", ".ofmmmmmmbbmmfo.", ".ofmmmmmmbbmmfo.", ".ofmmmmmmmmmmfo.", "..ofmmmmmmmmfo..", "..offmmmmmmffo..",
+            "...ooffffffoo...", ".....oooooo.....", "................", "................"};
+    static final String[] DRUMSTICK = {
+            "................", ".........oooo...", "........ommmmo..", ".......ommhmmmo.", ".......ommmmmmo.", "......ommmmmmmo.",
+            "......ommmmmmo..", ".....offmmmmo...", "....obbfoooo....", "...obbo.........", ".oobbo..........", "obbbo...........",
+            "obbbbo..........", ".oobo...........", "................", "................"};
+    static final String[] FILLET = {
+            "................", "................", "............oo..", "..........oommo.", "........oommmfo.", "......oommmmffo.",
+            "....oommhmmffo..", "...ommmhmmffo...", "..ommmmmmffo....", ".ommmmmmffo.....", ".ommmmfffo......", ".offfffoo.......",
+            "..ooooo.........", "................", "................", "................"};
+
+    static BufferedImage meatIcon(AnimalDef d, boolean cooked) {
+        String[] mask; int rawC, cookedC;
+        switch (d.shape) {
+            case BIRD -> { mask = DRUMSTICK; rawC = 0xF0B4A4; cookedC = 0xC8823C; }
+            case FISH, CRAB -> { mask = FILLET; rawC = 0xEE9078; cookedC = 0xDCC8A0; }
+            default -> { mask = STEAK; rawC = 0xC83A3A; cookedC = 0x8A4A28; }
+        }
+        // hayvanin kendi rengi ete hafifce, deri/yag kismina belirgin sekilde yansir
+        int meat = cooked ? mix(cookedC, d.base, 0.12f) : mix(rawC, d.base, 0.2f);
+        int skin = cooked ? mix(AnimalDef.darken(d.base, 0.6f), 0x5A3418, 0.35f) : mix(d.base, 0xFFFFFF, 0.3f);
+        BufferedImage img = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+        for (int y = 0; y < 16; y++) {
+            if (mask[y].length() != 16) throw new IllegalStateException("maske satiri 16 olmali: " + mask[y]);
+            for (int x = 0; x < 16; x++) {
+                float n = 1f + (hash(x * 5 + d.id.hashCode(), y * 9, cooked ? 1 : 0) - 0.5f) * 0.12f;
+                int c;
+                switch (mask[y].charAt(x)) {
+                    case 'o' -> c = AnimalDef.darken(meat, 0.5f);
+                    case 'm' -> c = AnimalDef.darken(meat, n);
+                    case 'h' -> c = AnimalDef.darken(meat, 1.22f);
+                    case 'f' -> c = AnimalDef.darken(skin, n);
+                    case 'b' -> c = cooked ? 0xE0D4BC : 0xF2ECDC;
+                    default -> { continue; }
+                }
+                img.setRGB(x, y, 0xFF000000 | c);
+            }
+        }
+        return img;
     }
 
     static String biomeModifier(AnimalDef d, String biome) {

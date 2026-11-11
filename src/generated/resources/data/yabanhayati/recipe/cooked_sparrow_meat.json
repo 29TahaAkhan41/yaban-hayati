@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": { "item": "yabanhayati:sparrow_meat" },
+  "result": { "id": "yabanhayati:cooked_sparrow_meat" }
+}

@@ -86,7 +86,7 @@ public final class Animals {
         q("brown_bear", "Brown Bear", "Boz Ayı").body(10, 10, 18).legs(7, 4).head(8, 7, 6).snout(4, 3, 3).ears(ROUND).tail(STUB, 2)
                 .colors(0x6B4A2B, 0x7A5836).stats(40, 0.25, 8).temper(NEUTRAL).sound("polar_bear")
                 .food(mix(FISHES, new String[]{"minecraft:sweet_berries", "minecraft:honeycomb"})).biomes(FOREST, TAIGA).spawn(3, 1, 2)
-                .drop("minecraft:leather", 0, 2).drop("minecraft:salmon", 0, 2);
+                .drop("minecraft:leather", 0, 2);
         q("crocodile", "Crocodile", "Timsah").body(9, 4, 20).legs(2, 3).head(7, 4, 7).snout(5, 3, 8).tail(THICK, 18)
                 .colors(0x4A5D32, 0xC8C890).pattern(SPOTS, 0x34421F).scale(1.2).stats(35, 0.22, 8).temper(AGGRESSIVE)
                 .food(MEAT).biomes(SWAMP).spawn(4, 1, 2).drop("minecraft:leather", 1, 3);
@@ -115,10 +115,10 @@ public final class Animals {
                 .food(mix(GRASS, new String[]{"minecraft:melon_slice"})).biomes(RIVER, SWAMP).spawn(2, 1, 3).drop("minecraft:leather", 1, 3);
         q("wildebeest", "Wildebeest", "Gnu").body(8, 8, 16).legs(9, 2).head(6, 7, 7).horns(HORNS, 4).withMane(0x1E1E22)
                 .tail(TUFT, 8).colors(0x5C5A5E, 0x6A686C).headColor(0x2A2A2E).stats(24, 0.32, 4).temper(NEUTRAL).prey().sound("cow")
-                .food(GRASS).biomes(SAVANNA).spawn(6, 3, 6).drop("minecraft:beef", 1, 3).drop("minecraft:leather", 0, 2);
+                .food(GRASS).biomes(SAVANNA).spawn(6, 3, 6).drop("minecraft:leather", 0, 2);
         q("antelope", "Antelope", "Ceylan").body(5, 5, 12).legs(9, 2).neck(5, 3, 0.3).head(4, 4, 5).snout(3, 2, 2).ears(SMALL)
                 .horns(HORNS, 5).tail(STUB, 2).colors(0xD2A064, 0xF5EEDD).detail(0x3A3028).stats(12, 0.4, 0).prey()
-                .food(mix(GRASS, VEG)).biomes(SAVANNA, DESERT).spawn(8, 3, 5).drop("minecraft:mutton", 1, 2).drop("minecraft:leather", 0, 1);
+                .food(mix(GRASS, VEG)).biomes(SAVANNA, DESERT).spawn(8, 3, 5).drop("minecraft:leather", 0, 1);
         q("meerkat", "Meerkat", "Mirket").body(3, 6, 4).legs(2, 1).head(3, 3, 3).headRaise(4).snout(2, 1, 1).tail(THIN, 5)
                 .colors(0xC8A878, 0xE6D4B0).stats(6, 0.3, 0).prey().food(SEEDS).biomes(DESERT, SAVANNA, BADLANDS).spawn(6, 2, 5);
         q("fennec_fox", "Fennec Fox", "Çöl Tilkisi").body(3, 3, 6).legs(3, 1).head(4, 3, 3).snout(2, 1, 2).ears(LONG).tail(BUSHY, 5)
@@ -128,14 +128,13 @@ public final class Animals {
         // ============================== ORMAN ==============================
         q("deer", "Deer", "Geyik").body(6, 6, 13).legs(9, 2).neck(5, 3, 0.4).head(4, 4, 6).snout(3, 2, 2).ears(LONG)
                 .horns(ANTLERS, 6).tail(STUB, 2).colors(0xA9744A, 0xE8D9C0).detail(0xD8C8A8).stats(14, 0.34, 0).prey()
-                .food(mix(GRASS, VEG)).biomes(FOREST, PLAINS).spawn(9, 2, 4).drop("minecraft:mutton", 1, 2).drop("minecraft:leather", 0, 2);
+                .food(mix(GRASS, VEG)).biomes(FOREST, PLAINS).spawn(9, 2, 4).drop("minecraft:leather", 0, 2);
         q("moose", "Moose", "Sığın").body(9, 10, 18).legs(13, 3).neck(5, 5, 0.6).head(6, 6, 9).snout(5, 4, 3).ears(SMALL)
                 .horns(ANTLERS, 7).hump(3).tail(STUB, 2).colors(0x4E3A2A, 0x5C4634).detail(0xC8B898).scale(1.3)
-                .stats(40, 0.26, 8).temper(NEUTRAL).food(mix(GRASS, LEAVES)).biomes(TAIGA, new String[]{"minecraft:snowy_taiga"}).spawn(3, 1, 2)
-                .drop("minecraft:beef", 1, 3).drop("minecraft:leather", 0, 2);
+                .stats(40, 0.26, 8).temper(NEUTRAL).food(mix(GRASS, LEAVES)).biomes(TAIGA, new String[]{"minecraft:snowy_taiga"}).spawn(3, 1, 2).drop("minecraft:leather", 0, 2);
         q("boar", "Wild Boar", "Yaban Domuzu").body(7, 7, 13).legs(5, 2).head(6, 6, 6).snout(4, 3, 3).ears(SMALL).tusks(2)
                 .tail(THIN, 3).colors(0x4F3B2A, 0x5C4634).pattern(BACK, 0x2E2218).detail(0xEDE4D0).stats(16, 0.27, 4).temper(NEUTRAL)
-                .prey().sound("pig").food(VEG).biomes(FOREST, TAIGA).spawn(7, 2, 4).drop("minecraft:porkchop", 1, 3);
+                .prey().sound("pig").food(VEG).biomes(FOREST, TAIGA).spawn(7, 2, 4);
         q("raccoon", "Raccoon", "Rakun").body(5, 5, 9).legs(3, 2).head(5, 4, 4).snout(3, 2, 2).ears(SMALL).tail(BUSHY, 7)
                 .colors(0x8A8A8A, 0xB0B0B0).pattern(STRIPES, 0x2A2A2A).patternOn(false, false, false, true)
                 .stats(8, 0.28, 0).food(mix(FRUIT, FISHES)).biomes(FOREST).spawn(6, 1, 3);
@@ -178,14 +177,12 @@ public final class Animals {
         // ============================== SOGUK VE DAG ==============================
         q("reindeer", "Reindeer", "Ren Geyiği").body(7, 7, 14).legs(9, 2).neck(5, 4, 0.5).head(5, 5, 6).snout(3, 3, 2).ears(SMALL)
                 .horns(ANTLERS, 7).tail(STUB, 2).colors(0x8C7B6B, 0xE6E0D6).detail(0xD8CCB8).stats(18, 0.3, 0).prey()
-                .food(GRASS).biomes(SNOWY).spawn(7, 2, 5).drop("minecraft:mutton", 1, 2).drop("minecraft:leather", 0, 2);
+                .food(GRASS).biomes(SNOWY).spawn(7, 2, 5).drop("minecraft:leather", 0, 2);
         q("bison", "Bison", "Bizon").body(10, 11, 18).legs(7, 3).head(8, 8, 6).snout(5, 4, 2).horns(HORNS, 3).hump(4)
                 .tail(TUFT, 7).colors(0x5A3F2A, 0x4A3322).headColor(0x3B2818).maneColor(0x2A1C10).scale(1.2)
-                .stats(40, 0.24, 7).temper(NEUTRAL).sound("cow").food(GRASS).biomes(PLAINS).spawn(4, 2, 4)
-                .drop("minecraft:beef", 1, 3).drop("minecraft:leather", 0, 2);
+                .stats(40, 0.24, 7).temper(NEUTRAL).sound("cow").food(GRASS).biomes(PLAINS).spawn(4, 2, 4).drop("minecraft:leather", 0, 2);
         q("yak", "Yak", "Yak").body(9, 10, 16).legs(6, 3).head(7, 7, 6).snout(5, 4, 2).horns(HORNS, 4).hump(2).tail(BUSHY, 6)
-                .colors(0x2E2622, 0x3A302A).stats(30, 0.22, 5).temper(NEUTRAL).sound("cow").food(GRASS).biomes(MOUNTAIN).spawn(4, 2, 3)
-                .drop("minecraft:beef", 1, 3).drop("minecraft:leather", 0, 2);
+                .colors(0x2E2622, 0x3A302A).stats(30, 0.22, 5).temper(NEUTRAL).sound("cow").food(GRASS).biomes(MOUNTAIN).spawn(4, 2, 3).drop("minecraft:leather", 0, 2);
         q("seal", "Seal", "Fok").body(7, 6, 14).legs(1, 3).head(6, 5, 5).snout(4, 3, 2).tail(THICK, 5)
                 .colors(0x7C8A96, 0xC8D2DC).pattern(SPOTS, 0x5E6A76).stats(16, 0.18, 0).food(FISHES).biomes(ICE_COAST, new String[]{"minecraft:stony_shore"})
                 .spawn(6, 2, 4);
@@ -197,7 +194,7 @@ public final class Animals {
         b("ostrich", "Ostrich", "Devekuşu").body(7, 7, 10).legs(10, 2).neck(10, 2, 0).beak(2, 1, 3).wings(7).fishTail(3, 0)
                 .colors(0x2A2420, 0x2A2420).headColor(0xD8B8A8).detail(0xD8B8A8).maneColor(0xF0F0F0).scale(1.3)
                 .stats(20, 0.4, 4).temper(NEUTRAL).food(SEEDS).biomes(SAVANNA).spawn(4, 2, 4)
-                .drop("minecraft:feather", 1, 3).drop("minecraft:chicken", 1, 2);
+                .drop("minecraft:feather", 1, 3);
         b("penguin", "Penguin", "Penguen").body(6, 9, 5).legs(1, 1).head(5, 4, 4).beak(2, 1, 2).wings(4).fishTail(1, 0)
                 .colors(0x22262E, 0xF4F4F4).frontBelly().detail(0xF0A020).maneColor(0x22262E)
                 .stats(8, 0.18, 0).food(FISHES).biomes(ICE_COAST, new String[]{"minecraft:snowy_plains"}).spawn(8, 3, 6)
@@ -207,17 +204,16 @@ public final class Animals {
                 .stats(8, 0.24, 0).food(FISHES).biomes(SWAMP, BEACH).spawn(5, 3, 6).drop("minecraft:feather", 0, 2);
         b("duck", "Duck", "Ördek").body(4, 4, 6).legs(2, 1).neck(2, 2, 0).beak(2, 1, 2).wings(4).fishTail(2, 0)
                 .colors(0x7A5C3C, 0xC8B8A0).headColor(0x1E6B3A).detail(0xF0A020).stats(5, 0.24, 0).prey().sound("chicken")
-                .food(SEEDS).biomes(RIVER, SWAMP, PLAINS).spawn(8, 2, 4).drop("minecraft:chicken", 1, 1).drop("minecraft:feather", 0, 2);
+                .food(SEEDS).biomes(RIVER, SWAMP, PLAINS).spawn(8, 2, 4).drop("minecraft:feather", 0, 2);
         b("goose", "Goose", "Kaz").body(5, 5, 8).legs(3, 1).neck(5, 2, 0).beak(2, 1, 2).wings(6).fishTail(2, 0)
                 .colors(0xE8E8E8, 0xFFFFFF).detail(0xF08020).stats(8, 0.24, 2).temper(NEUTRAL).sound("chicken")
-                .food(SEEDS).biomes(PLAINS, RIVER).spawn(5, 2, 4).drop("minecraft:chicken", 1, 1).drop("minecraft:feather", 0, 2);
+                .food(SEEDS).biomes(PLAINS, RIVER).spawn(5, 2, 4).drop("minecraft:feather", 0, 2);
         b("swan", "Swan", "Kuğu").body(6, 5, 9).legs(2, 1).neck(7, 2, 0).beak(2, 1, 2).wings(7).fishTail(2, 0)
                 .colors(0xFAFAFA, 0xFFFFFF).detail(0xF07818).stats(10, 0.22, 2).temper(NEUTRAL)
                 .food(SEEDS).biomes(RIVER).spawn(3, 1, 2).drop("minecraft:feather", 1, 3);
         b("turkey", "Turkey", "Hindi").body(7, 7, 8).legs(3, 1).neck(3, 2, 0).beak(1, 1, 2).wings(6).fishTail(5, 0).tailUp()
                 .colors(0x4A3020, 0x5A3C28).headColor(0xC84030).detail(0xD8B060).maneColor(0x3A2418)
-                .stats(8, 0.24, 0).prey().sound("chicken").food(SEEDS).biomes(FOREST, PLAINS).spawn(6, 2, 4)
-                .drop("minecraft:chicken", 1, 2).drop("minecraft:feather", 0, 2);
+                .stats(8, 0.24, 0).prey().sound("chicken").food(SEEDS).biomes(FOREST, PLAINS).spawn(6, 2, 4).drop("minecraft:feather", 0, 2);
         b("peacock", "Peacock", "Tavus Kuşu").body(5, 5, 8).legs(4, 1).neck(5, 2, 0).beak(1, 1, 2).wings(6).fishTail(14, 0)
                 .colors(0x1450A0, 0x1A5CB8).detail(0xC8B890).maneColor(0x1E8C5A).pattern(SPOTS, 0x2848C8).patternOn(false, false, false, true)
                 .stats(8, 0.24, 0).food(SEEDS).biomes(JUNGLE).spawn(4, 1, 2).drop("minecraft:feather", 1, 3);
@@ -255,20 +251,19 @@ public final class Animals {
 
         // ============================== DENIZ ==============================
         f("shark", "Shark", "Köpekbalığı").body(8, 8, 20).fishTail(10, 11).dorsal(6).fins(6, 4)
-                .colors(0x6E7C8A, 0xE8ECF0).stats(30, 1.2, 8).temper(AGGRESSIVE).biomes(OCEAN).spawn(3, 1, 1)
-                .drop("minecraft:cod", 1, 3);
+                .colors(0x6E7C8A, 0xE8ECF0).stats(30, 1.2, 8).temper(AGGRESSIVE).biomes(OCEAN).spawn(3, 1, 1);
         f("orca", "Orca", "Katil Balina").body(10, 10, 22).fishTail(10, 12).fluke().dorsal(8).fins(6, 5)
                 .colors(0x16161A, 0xF4F4F4).scale(1.3).stats(50, 1.2, 9).temper(NEUTRAL).biomes(COLD_OCEAN).spawn(2, 1, 3);
         f("whale", "Blue Whale", "Mavi Balina").body(12, 11, 30).fishTail(14, 16).fluke().dorsal(2).fins(8, 5)
                 .colors(0x3E5C7E, 0xA8BCCC).scale(2.5).stats(120, 0.8, 0).biomes(DEEP_OCEAN).spawn(1, 1, 1);
         f("swordfish", "Swordfish", "Kılıç Balığı").body(4, 6, 14).nose(10).fishTail(5, 8).dorsal(5).fins(3, 2)
-                .colors(0x3A4E7A, 0xD8E0E8).stats(16, 1.5, 5).temper(NEUTRAL).biomes(OCEAN).spawn(3, 1, 2).drop("minecraft:cod", 1, 2);
+                .colors(0x3A4E7A, 0xD8E0E8).stats(16, 1.5, 5).temper(NEUTRAL).biomes(OCEAN).spawn(3, 1, 2);
         f("tuna", "Tuna", "Ton Balığı").body(4, 6, 12).fishTail(4, 7).dorsal(3).fins(3, 2)
-                .colors(0x2E4A78, 0xD0D8E0).stats(10, 1.3, 0).prey().biomes(OCEAN, COLD_OCEAN).spawn(8, 3, 6).drop("minecraft:cod", 1, 2);
+                .colors(0x2E4A78, 0xD0D8E0).stats(10, 1.3, 0).prey().biomes(OCEAN, COLD_OCEAN).spawn(8, 3, 6);
         f("piranha", "Piranha", "Pirana").body(2, 4, 5).fishTail(2, 4).dorsal(2).fins(1, 1)
                 .colors(0x6A7A6A, 0xC83828).stats(5, 1.2, 2).temper(AGGRESSIVE).biomes(JUNGLE, new String[]{"minecraft:mangrove_swamp"}).spawn(6, 3, 6);
         f("catfish", "Catfish", "Yayın Balığı").body(5, 4, 11).fishTail(5, 5).dorsal(2).fins(3, 2)
-                .colors(0x5A4E3A, 0xC8BCA0).stats(8, 0.9, 0).biomes(RIVER, SWAMP).spawn(6, 1, 3).drop("minecraft:cod", 1, 2);
+                .colors(0x5A4E3A, 0xC8BCA0).stats(8, 0.9, 0).biomes(RIVER, SWAMP).spawn(6, 1, 3);
         f("manta_ray", "Manta Ray", "Vatoz").body(10, 2, 10).flat().fishTail(10, 0).fins(8, 8)
                 .colors(0x1E2A3A, 0xE8E8E8).stats(16, 0.9, 0).biomes(WARM_OCEAN).spawn(3, 1, 2);
 

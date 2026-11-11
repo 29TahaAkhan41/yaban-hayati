@@ -5,7 +5,7 @@ goril, penguen, flamingo, kartal, baykuş, köpekbalığı, balina, yılan, yeng
 
 ## Kurulum (oynamak için)
 1. Minecraft **1.21.1** için **NeoForge 21.1.x** kur.
-2. `build/libs/yabanhayati-1.0.0.jar` dosyasını `.minecraft/mods` klasörüne at.
+2. `build/libs/yabanhayati-1.1.0.jar` dosyasını `.minecraft/mods` klasörüne at.
 3. Yaratıcı modda **Yaban Hayatı** sekmesinde tüm çağırma yumurtaları var; hayatta kalma modunda
    hayvanlar kendi biyomlarında doğar (yeni keşfedilen bölgelerde).
 
@@ -15,6 +15,10 @@ goril, penguen, flamingo, kartal, baykuş, köpekbalığı, balina, yılan, yeng
 - Avcılar (aslan, kaplan, sırtlan...) av hayvanlarını kovalar; avlar kaçar.
 - Timsah, köpekbalığı ve pirana oyuncuya saldırır; ayı, fil, gergedan gibi hayvanlar yalnızca vurulunca.
 - Kartal, baykuş, karga, martı gibi kuşlar uçar. Yılan ve komodo ejderi zehirler.
+- Her hayvan kendi etini düşürür (ör. Çiğ Aslan Eti). Etler fırında, tütsüleyicide ve kamp ateşinde pişer;
+  yanarak ölen hayvan doğrudan pişmiş et verir.
+- Etin doyuruculuğu hayvanın vahşiliğine göre artar: pişmiş geyik eti 4 açlık puanı doldururken
+  pişmiş aslan eti 8, timsah ve köpekbalığı eti 9 doldurur. Büyük hayvanlar daha çok et düşürür.
 
 ## Yeni hayvan eklemek
 Tüm hayvanlar tek dosyada: `src/defs/java/com/yabanhayati/def/Animals.java`.

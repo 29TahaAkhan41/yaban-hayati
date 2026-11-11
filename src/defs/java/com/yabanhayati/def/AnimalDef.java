@@ -127,6 +127,30 @@ public final class AnimalDef {
     public AnimalDef drop(String item, int min, int max) { drops.add(new Drop(item, min, max)); return this; }
     public AnimalDef sound(String vanillaEntity) { sound = vanillaEntity; return this; }
 
+    // ------------------------------------------------------------------ et
+    /** Vahsilik (0..1): mizac ve saldiri gucunden hesaplanir. Etin doyuruculugunu belirler. */
+    public float ferocity() {
+        int rank = switch (temper) { case PASSIVE -> 0; case NEUTRAL -> 1; case PREDATOR -> 2; case AGGRESSIVE -> 3; };
+        float atk = temper == Temper.PASSIVE ? 0 : attack;
+        return Math.min(1f, (rank * 2 + atk) / 16f);
+    }
+    /** Pismis etin doldurdugu aclik puani (4..10). */
+    public int cookedNutrition() { return 4 + Math.round(6 * ferocity()); }
+    /** Pismis etin doygunluk carpani (0.5..1.0). */
+    public float cookedSaturation() { return 0.5f + 0.5f * ferocity(); }
+    public int rawNutrition() { return Math.max(1, Math.round(cookedNutrition() / 3f)); }
+    public float rawSaturation() { return 0.15f + 0.25f * ferocity(); }
+    /** Hayvanin buyuklugune gore dusen et sayisi: {en az, en cok}. */
+    public int[] meatCount() {
+        float vol = bodyW * bodyH * bodyL * scale * scale * scale * (shape == Shape.SNAKE ? segments : 1);
+        if (vol < 150) return new int[]{1, 1};
+        if (vol < 800) return new int[]{1, 2};
+        if (vol < 4000) return new int[]{1, 3};
+        return new int[]{2, 5};
+    }
+    public String rawMeatId() { return id + "_meat"; }
+    public String cookedMeatId() { return "cooked_" + id + "_meat"; }
+
     public boolean isAquatic() { return shape == Shape.FISH; }
     public boolean attacks() { return attack > 0 && temper != Temper.PASSIVE; }
     public int bellyColor() { return belly < 0 ? base : belly; }

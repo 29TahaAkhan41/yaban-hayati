@@ -20,6 +20,7 @@ import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.WaterAnimal;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -53,6 +54,8 @@ public final class YabanHayati {
     /** Su hayvanlari. */
     public static final Map<AnimalDef, DeferredHolder<EntityType<?>, EntityType<AquaticAnimal>>> WATER = new LinkedHashMap<>();
     public static final List<DeferredItem<Item>> EGGS = new ArrayList<>();
+    /** Her hayvanin cig ve pismis eti. */
+    public static final List<DeferredItem<Item>> MEATS = new ArrayList<>();
 
     static {
         for (AnimalDef def : Animals.ALL) {
@@ -75,11 +78,19 @@ public final class YabanHayati {
             int bg = def.base, fg = def.pattern != AnimalDef.Pattern.NONE ? def.accent
                     : (def.bellyColor() != def.base ? def.bellyColor() : AnimalDef.darken(def.base, 0.6f));
             EGGS.add(ITEMS.register(def.id + "_spawn_egg", () -> new DeferredSpawnEggItem(holder, bg, fg, new Item.Properties())));
+            // et: doyuruculuk hayvanin vahsiligine gore (bkz. AnimalDef.ferocity)
+            MEATS.add(ITEMS.register(def.rawMeatId(), () -> new Item(new Item.Properties().food(
+                    new FoodProperties.Builder().nutrition(def.rawNutrition()).saturationModifier(def.rawSaturation()).build()))));
+            MEATS.add(ITEMS.register(def.cookedMeatId(), () -> new Item(new Item.Properties().food(
+                    new FoodProperties.Builder().nutrition(def.cookedNutrition()).saturationModifier(def.cookedSaturation()).build()))));
         }
         TABS.register("main", () -> CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup." + MODID))
                 .icon(() -> new ItemStack(EGGS.get(0).get()))
-                .displayItems((params, out) -> EGGS.forEach(e -> out.accept(e.get())))
+                .displayItems((params, out) -> {
+                    EGGS.forEach(e -> out.accept(e.get()));
+                    MEATS.forEach(e -> out.accept(e.get()));
+                })
                 .build());
     }
 

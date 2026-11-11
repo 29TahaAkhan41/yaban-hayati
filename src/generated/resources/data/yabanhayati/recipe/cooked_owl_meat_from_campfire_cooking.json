@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": { "item": "yabanhayati:owl_meat" },
+  "result": { "id": "yabanhayati:cooked_owl_meat" }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.35,
+  "ingredient": { "item": "yabanhayati:tuna_meat" },
+  "result": { "id": "yabanhayati:cooked_tuna_meat" }
+}
