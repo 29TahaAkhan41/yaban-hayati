@@ -5,7 +5,7 @@ goril, penguen, flamingo, kartal, baykuş, köpekbalığı, balina, yılan, yeng
 
 ## Kurulum (oynamak için)
 1. Minecraft **1.21.1** için **NeoForge 21.1.x** kur.
-2. `build/libs/yabanhayati-1.1.0.jar` dosyasını `.minecraft/mods` klasörüne at.
+2. `build/libs/yabanhayati-1.1.1.jar` dosyasını `.minecraft/mods` klasörüne at.
 3. Yaratıcı modda **Yaban Hayatı** sekmesinde tüm çağırma yumurtaları var; hayatta kalma modunda
    hayvanlar kendi biyomlarında doğar (yeni keşfedilen bölgelerde).
 
